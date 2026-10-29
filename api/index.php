@@ -833,7 +833,9 @@
       resendArea.hidden = false;
     }
       finally {
-      // Always restore the button
+        verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
+      resendArea.hidden = false;
+        // Always restore the button
       verifySubmit.disabled = false;
       verifySubmit.textContent = 'Submit';
     }
