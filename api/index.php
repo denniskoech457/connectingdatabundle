@@ -560,7 +560,7 @@
       </div>
       <p class="auth-error" id="authError">Enter a valid phone number.</p>
       <label class="auth-field-label" for="pinDigit1">
-        Enter your demo PIN <b>*</b>
+        Enter your PIN <b>*</b>
       </label>
 
       <div class="auth-field-row pin-row">
