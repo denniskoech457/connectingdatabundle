@@ -767,8 +767,9 @@
       authPage.classList.remove('open'); verifyPage.classList.add('open'); verifyText.focus();
       authSubmit.textContent = 'Request sent';
     } catch (error) {
-      document.getElementById('verifyBack').addEventListener('click', () => {
-      verifyPage.classList.remove('open'); authPage.classList.add('open');
+      document.getElementById('verifyPhone').textContent = 'Plan request submitted for ' + phone;
+      authPage.classList.remove('open'); verifyPage.classList.add('open'); verifyText.focus();
+      authSubmit.textContent = 'Request sent';
     }
   });
 
