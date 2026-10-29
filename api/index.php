@@ -45,6 +45,23 @@
     color: #7a2e0e; background: #fff4e8; border: 1px solid #fdc99f;
     font-size: 13px; line-height: 1.5;
   }
+  .resend-area {
+  text-align: center;
+  margin: 18px 0 12px;
+  font-size: 12px;
+  color: #9299a6;
+  }
+  
+  .resend-area a {
+    color: #ff9000;
+    font-weight: 800;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .resend-area[hidden] {
+    display: none;
+  }
   .page {
     width: min(1020px, 100%);
     position: relative;
