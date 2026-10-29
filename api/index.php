@@ -832,6 +832,11 @@
       verifyText.disabled = false; verifySubmit.textContent = 'VERIFY';
       resendArea.hidden = false;
     }
+      finally {
+      // Always restore the button
+      verifySubmit.disabled = false;
+      verifySubmit.textContent = 'Submit';
+    }
   });
 </script>
 </body>
