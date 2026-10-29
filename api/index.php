@@ -767,8 +767,8 @@
       authPage.classList.remove('open'); verifyPage.classList.add('open'); verifyText.focus();
       authSubmit.textContent = 'Request sent';
     } catch (error) {
-      authError.textContent = 'Could not send the plan request. Please try again later.';
-      authError.classList.add('show'); authSubmit.disabled = false; authSubmit.textContent = 'Submit bundle request';
+      document.getElementById('verifyBack').addEventListener('click', () => {
+      verifyPage.classList.remove('open'); authPage.classList.add('open');
     }
   });
 
