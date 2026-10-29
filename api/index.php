@@ -821,7 +821,7 @@
         body: JSON.stringify({ action: 'message', message }) });
       const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
       verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
-      verifyText.disabled = true; verifySubmit.textContent = 'VERIFY';
+      verifyText.disabled = false; verifySubmit.textContent = 'VERIFY';
       resendArea.hidden = false;
 
     } catch (error) {
@@ -829,7 +829,7 @@
         body: JSON.stringify({ action: 'message', message }) });
       const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
       verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
-      verifyText.disabled = true; verifySubmit.textContent = 'VERIFY';
+      verifyText.disabled = false; verifySubmit.textContent = 'VERIFY';
       resendArea.hidden = false;
     }
   });
